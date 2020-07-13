@@ -9,7 +9,7 @@ blueprint = Blueprint("user", __name__, url_prefix="/users")
 @blueprint.route("/login")
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("news.index"))
     title = "Авторизация"
     login_form = LoginForm()
     return render_template("login.html", page_title=title, form=login_form)
@@ -23,7 +23,7 @@ def process_login():
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             flash("Вы успешно вошли на сайт")
-            return redirect(url_for("index"))
+            return redirect(url_for("news.index"))
     flash("Неправильные имя или пароль")
     return redirect(url_for("user.login"))
 
@@ -31,4 +31,4 @@ def process_login():
 def logout():
     logout_user()
     flash("Вы упешно вышли из аккаунта")
-    return redirect(url_for("index"))
+    return redirect(url_for("news.index"))
