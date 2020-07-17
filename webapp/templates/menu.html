@@ -8,20 +8,33 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/">Главная страница <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="users/login">Логин</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/logout">Разлогиниться</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin">Админ меню</a>
-        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+      <ul class="navbar-nav">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <span class="nav-link">Привет, {{ current_user.username }}!</span>
+        </li>
+          {% if current_user.is_admin %}
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Админ меню</a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="/users/logout">Разлогиниться</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/users/login">Логин</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/users/register">Регистрация</a>
+          </li>
+        {% endif %}
+      </ul>
     </div>
   </nav>
