@@ -14,10 +14,9 @@
             {% endwith %}
 
             <div style="padding-top: 30px">
-                {% for news in range(5) %}
-                <h6>{{ news_list[news].date.strftime("%d.%m.%Y") }}</h6>
-                <h3><a href="{{ news_list[news].url }}">{{ news_list[news].title }}</a></h3>
-                <p>{{ news_list[news].text }}</p>
+                {% for news in news_list %}
+                <h6>{{ news.date.strftime("%d.%m.%Y") }}</h6>
+                <h3><a href="{{ url_for('news.single_news', news_id=news.id) }}">{{ news.title }}</a></h3>
                 <hr>
                 {% endfor %}
             </div>

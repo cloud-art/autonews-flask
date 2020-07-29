@@ -12,7 +12,7 @@ from webapp.weather import weather_by_city
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile('config.py')
+    app.config.from_pyfile('user/config.py')
     db.init_app(app)
     migrate = Migrate(app, db)
 
